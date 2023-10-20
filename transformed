@@ -1,0 +1,48 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char in[150], transformed[150], transformedAndConverted[150];
+    int i, len;
+    char a, b;
+    int diff = 'a' - 'A';
+
+    printf(" 문자 입력 : ");
+    gets_s(in, sizeof(in));
+
+    printf(" 기존 문자와 새로운 문자를 입력하세요 (예: a b): ");
+
+    a = getchar(); // 첫 번째 문자 입력
+    getchar(); // 공백 문자나 개행 문자 제거
+    b = getchar(); // 두 번째 문자 입력
+
+    len = strlen(in);
+
+    for (i = 0; i < len; i++)
+    {
+        if (in[i] == a)
+            transformed[i] = b;
+        else
+            transformed[i] = in[i];
+    }
+    transformed[i] = '\0';
+
+    strcpy(transformedAndConverted, transformed);
+
+    for (i = 0; i < len; i++)
+    {
+        if (('A' <= in[i]) && (in[i] <= 'Z'))
+            transformedAndConverted[i] = in[i] + diff;
+        else if (('a' <= in[i]) && (in[i] <= 'z'))
+            transformedAndConverted[i] = in[i] - diff;
+        // 그 외의 경우에는 변환하지 않음
+    }
+    transformedAndConverted[i] = '\0';
+
+    printf("특정 문자 변환 결과 => %s\n", transformed);
+    printf("변환된 문자 => %s\n", transformedAndConverted);
+
+    return 0;
+}
